@@ -1,6 +1,6 @@
 # omaflake website
 
-Static site for [omaflake](https://omaflake.app), served by GitHub Pages from the `main` branch (root) under the
+Static site for [omaflake](https://omaflake.app), deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`, under the
 custom domain in `CNAME`. No build step: plain HTML, CSS and one small script.
 
 - `index.html`, `style.css` – the page

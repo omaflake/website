@@ -1,0 +1,31 @@
+# Deploys the site to GitHub Pages (omaflake.app, see CNAME) on every push to main. No build step.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/configure-pages@v5
+      - name: Site files only
+        run: mkdir _site && cp -R index.html style.css download.js update.json CNAME site.webmanifest favicon* apple-touch-icon.png icon-*.png assets _site/ && touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+      - id: deployment
+        uses: actions/deploy-pages@v4
