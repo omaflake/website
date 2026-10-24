@@ -11,6 +11,20 @@
     'linux-aarch64': { label: 'Linux aarch64', runs: r => r.kind === 'nixos' && r.systems.includes('aarch64-linux') },
   };
   const KINDS = { nixos: 'NixOS', macos: 'macOS' };
+  // The guest kinds' symbols, as in omaflake's apps. NixOS: Lucide 1.61.0 "snowflake" – copyright Lucide Contributors
+  // (portions Cole Bemis, Feather), ISC License; full notice in this repository's NOTICE. macOS: the Apple logo from
+  // Simple Icons 16.35.0 (the package is CC0; the logo is Apple's trademark), drawn filled.
+  const KIND_ICONS = {
+    nixos: { paths: ['m10 20-1.25-2.5L6 18', 'M10 4 8.75 6.5 6 6', 'm14 20 1.25-2.5L18 18', 'm14 4 1.25 2.5L18 6',
+      'm17 21-3-6h-4', 'm17 3-3 6 1.5 3', 'M2 12h6.5L10 9', 'm20 10-1.5 2 1.5 2', 'M22 12h-6.5L14 15', 'm4 10 1.5 2L4 14',
+      'm7 21 3-6-1.5-3', 'm7 3 3 6h4'] },
+    macos: { filled: true, size: 16, paths: ['M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 ' +
+      '3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 ' +
+      '2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-' +
+      '4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 ' +
+      '3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 ' +
+      '2.715-.688 3.559-1.701'] },
+  };
   const DISPLAYS = { gpu: '3D window', window: 'Window', none: 'Headless' };
   const NETWORKS = { shared: 'Shared (NAT)', isolated: 'Isolated', none: 'None' };
   const SORTS = { name: 'Name', kind: 'Guest', size: 'Smallest VM first' };
@@ -167,7 +181,10 @@
     const name = el('a', { href: `#${anchor(r)}` }, r.name);
     $('[data-name]', node).append(name);
     $('[data-lab]', node).hidden = !r.lab;
-    $('[data-kind]', node).textContent = KINDS[r.kind] || r.kind;
+    const kind = $('[data-kind]', node);
+    kind.title = KINDS[r.kind] || r.kind;
+    if (KIND_ICONS[r.kind]) kind.append(icon(KIND_ICONS[r.kind]), el('span', { class: 'visually-hidden' }, kind.title));
+    else kind.textContent = kind.title;
     $('[data-id]', node).textContent = slug(r);
     if (r.path && source.tree) {
       const src = $('[data-source]', node);
@@ -252,6 +269,23 @@
     if (/^https:\/\//.test(r.homepage)) links.append(el('a', { href: r.homepage, rel: 'nofollow noopener' }, 'Homepage'));
     links.hidden = !links.childNodes.length;
     return node;
+  }
+
+  // A 24×24 symbol: outlined like Lucide, or filled
+  function icon({ paths, filled = false, size = 18 }) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    const paint = filled ? { fill: 'currentColor' } : { fill: 'none', stroke: 'currentColor', 'stroke-width': 2,
+      'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+    for (const [k, v] of Object.entries({ viewBox: '0 0 24 24', width: size, height: size, 'aria-hidden': 'true', ...paint })) {
+      svg.setAttribute(k, v);
+    }
+    for (const d of paths) {
+      const path = document.createElementNS(ns, 'path');
+      path.setAttribute('d', d);
+      svg.append(path);
+    }
+    return svg;
   }
 
   const size = b => (b < 1024 ? `${b} B` : b < 1048576 ? `${(b / 1024).toFixed(1)} KB` : `${(b / 1048576).toFixed(1)} MB`);

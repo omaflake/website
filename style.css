@@ -187,7 +187,8 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .recipe-name a { color: var(--text); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .recipe-name a:hover { color: var(--cyan); }
 .recipe-name .badge { margin: 0; }
-.kind-chip { flex: none; font-size: 0.8rem; padding: 1px 8px; border-radius: 6px; border: 1px solid var(--line); }
+.kind-chip { flex: none; display: inline-flex; align-items: center; color: var(--muted); }
+.kind-chip svg { display: block; }
 .recipe-id { display: flex; align-items: center; gap: 6px; margin: -6px 0 0; color: var(--muted); font: 0.8rem var(--mono); min-width: 0; }
 .recipe-id span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .source-link { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
