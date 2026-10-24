@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>omaflake – clean NixOS and macOS VMs on Apple silicon</title>
-  <meta name="description" content="omaflake builds VM images from recipes you declare in Nix and runs disposable instances of them from a menu bar app. Alpha available for download.">
+  <title>omaflake – clean NixOS and macOS VMs on Mac and Linux</title>
+  <meta name="description" content="omaflake builds VM images from recipes you declare in Nix and runs disposable instances of them – on a Mac and on Linux. Alpha available for download.">
   <meta name="theme-color" content="#121212">
   <link rel="canonical" href="https://omaflake.app/">
   <meta property="og:title" content="omaflake">
-  <meta property="og:description" content="Clean NixOS and macOS virtual machines on Apple silicon – one click away.">
+  <meta property="og:description" content="Clean NixOS and macOS virtual machines on Mac and Linux – one click away.">
   <meta property="og:image" content="https://omaflake.app/assets/og.png">
   <meta property="og:url" content="https://omaflake.app/">
   <meta property="og:type" content="website">
@@ -23,10 +23,11 @@
   <header class="hero">
     <img class="mark" src="assets/omaflake-mark-on-dark-512.png" alt="" width="160" height="160">
     <h1 class="wordmark">omaflake</h1>
-    <p class="tagline">Clean NixOS and macOS virtual machines on Apple silicon – one click away.</p>
+    <p class="tagline">Clean NixOS and macOS virtual machines on Mac and Linux – one click away.</p>
     <p class="status">Alpha · unsigned build · for testing</p>
     <nav class="actions">
       <a class="button primary" href="#download">Download the alpha</a>
+      <a class="button" href="https://omaflake.dev">Documentation</a>
       <a class="button" href="https://github.com/omaflake/omaflake">View on GitHub</a>
     </nav>
   </header>
@@ -45,7 +46,7 @@
         </article>
         <article>
           <h3>Instances</h3>
-          <p>Run disposable instances from the menu bar app. <em>Reset</em> throws an instance's state away and starts over from the image.</p>
+          <p>Run disposable instances from the app – the menu bar on a Mac, a native window on Linux – or the <code>omaf</code> CLI. <em>Reset</em> throws an instance's state away and starts over from the image.</p>
         </article>
       </div>
     </section>
@@ -56,8 +57,8 @@
         <table>
           <thead><tr><th>Guest</th><th>Content</th><th>Runtime</th></tr></thead>
           <tbody>
-            <tr><td data-label="Guest"><strong>NixOS</strong> (aarch64)</td><td data-label="Content">NixOS modules, built as UEFI qcow2 images</td><td data-label="Runtime">QEMU with Hypervisor.framework, own build with virglrenderer for 3D</td></tr>
-            <tr><td data-label="Guest"><strong>macOS</strong></td><td data-label="Content">nix-darwin modules on top of a base installed from Apple's IPSW</td><td data-label="Runtime"><code>omaf-runner</code>, one process per VM on Virtualization.framework</td></tr>
+            <tr><td data-label="Guest"><strong>NixOS</strong> (aarch64, x86_64)</td><td data-label="Content">NixOS modules, built as UEFI qcow2 images</td><td data-label="Runtime">Mac: QEMU with Hypervisor.framework, own build with virglrenderer for 3D · Linux: QEMU with KVM</td></tr>
+            <tr><td data-label="Guest"><strong>macOS</strong> (Mac only)</td><td data-label="Content">nix-darwin modules on top of a base installed from Apple's IPSW</td><td data-label="Runtime"><code>omaf-runner</code>, one process per VM on Virtualization.framework</td></tr>
           </tbody>
         </table>
       </div>
@@ -68,9 +69,11 @@
 
       <div class="release" data-release hidden>
         <p class="release-head"><strong>omaflake <span data-version></span></strong> <span class="badge">alpha</span> <span class="badge warn">unsigned</span></p>
-        <p><a class="button primary" data-url href="#">Download <span data-file></span></a></p>
+        <p><a class="button primary" data-url href="#">Download for macOS</a></p>
+        <p class="platform">macOS 27 or later · Apple silicon · <span data-file></span></p>
         <p class="sum">SHA-256 <code data-sha></code></p>
         <p data-notes-wrap hidden><a data-page href="#">Release notes</a></p>
+        <p class="muted">On Linux? omaflake comes as a Nix package – <a href="#linux">install it with Nix</a>.</p>
       </div>
 
       <div class="release" data-pending>
@@ -78,7 +81,7 @@
         <p class="muted">Want to hear when it is out? Write to <a href="mailto:support@omaflake.app?subject=omaflake%20alpha">support@omaflake.app</a>.</p>
       </div>
 
-      <h3>Install</h3>
+      <h3>Install on a Mac</h3>
       <p class="muted">Until omaflake is signed by Apple's Developer ID, macOS blocks the app when it comes from a browser.
         Either way below works.</p>
       <div class="cards stack">
@@ -96,10 +99,26 @@ ditto -x -k &lt;file&gt; /Applications</code></pre>
         </article>
       </div>
 
+      <h3 id="linux">Install on Linux</h3>
+      <p class="muted">On Linux omaflake runs NixOS guests. It comes as a Nix package with the app, a desktop entry and the <code>omaf</code> CLI,
+        for x86_64 and aarch64 – on NixOS or any distribution with Nix.</p>
+      <div class="cards stack">
+        <article>
+          <h3>With Nix</h3>
+          <p>Installs omaflake and QEMU, then points omaflake at its image flake (the Linux package does not bring it yet).</p>
+          <pre class="snippet"><code>nix profile install github:omaflake/omaflake#omaflake-gui nixpkgs#qemu
+omaf config --flake 'github:omaflake/omaflake?dir=nix'
+omaf doctor</code></pre>
+        </article>
+      </div>
+      <p class="muted">Details – KVM access, other distributions, what works on a Linux desktop so far – in the
+        <a href="https://omaflake.dev/linux/">Linux guide</a>.</p>
+
       <h3>Requirements</h3>
       <ul>
-        <li>A Mac with Apple silicon and macOS 27 or later</li>
-        <li>Nix and a Linux builder for NixOS images – the app's <em>Doctor</em> checks what your Mac brings and sets both up by click</li>
+        <li><strong>Mac:</strong> Apple silicon and macOS 27 or later – NixOS and macOS guests</li>
+        <li><strong>Linux:</strong> x86_64 or aarch64 with KVM, Nix with flakes (or NixOS) – NixOS guests</li>
+        <li>Nix for NixOS images – on a Mac with a Linux builder; the app's <em>Doctor</em> checks what your computer brings and, on a Mac, sets both up by click</li>
         <li>Space: NixOS images take a few GB each; a macOS base downloads about 27 GB from Apple</li>
       </ul>
 
@@ -108,7 +127,7 @@ ditto -x -k &lt;file&gt; /Applications</code></pre>
         <li>Things will break. Your VMs, images and settings live in <code>~/.omaflake</code> – the app can move that folder.</li>
         <li>No automatic updates yet: the Doctor tells you when a new version is out, you install it the same way.</li>
         <li>Signed and notarized builds follow once falkOSS, the non-profit behind omaflake, has its Apple developer account.</li>
-        <li>The <code>omaf</code> CLI is not in the download yet – build it from <a href="https://github.com/omaflake/omaflake#readme">source</a>.</li>
+        <li>The <code>omaf</code> CLI comes with the app: on a Mac the <em>Doctor</em> offers to put it on your PATH; the Linux package installs it.</li>
       </ul>
       <p>Found a bug, missing something? <a href="https://github.com/omaflake/omaflake/issues">Open an issue</a> or write to
         <a href="mailto:support@omaflake.app?subject=omaflake%20alpha%20feedback">support@omaflake.app</a> – thank you for testing.</p>

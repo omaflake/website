@@ -105,7 +105,7 @@ footer {
 }
 
 #download > h3 { margin: 28px 0 8px; }
-.cards.stack { grid-template-columns: 1fr; }
+.cards.stack { grid-template-columns: minmax(0, 1fr); }
 #download ul { padding-left: 1.2em; color: var(--muted); }
 #download li { margin: 4px 0; }
 .muted { color: var(--muted); }
@@ -118,5 +118,6 @@ footer {
   color: var(--yellow); font: 0.75rem var(--mono); vertical-align: middle; }
 .badge.warn { border-color: var(--red); color: var(--red); }
 .sum { color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+.platform { color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
 .snippet { margin: 12px 0 0; padding: 12px 14px; font-size: 0.8rem; background: var(--bg); }
 .cards article .snippet code { white-space: pre; }
