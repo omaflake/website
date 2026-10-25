@@ -1,7 +1,7 @@
 # omaflake website
 
 Static site for [omaflake](https://omaflake.app), deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`, under the
-custom domain in `CNAME`. No build step: plain HTML, CSS and one small script.
+custom domain in `CNAME`. The workflow copies a fixed list of files and folders – a new one goes into its `cp` line. No build step: plain HTML, CSS and one small script.
 
 - `index.html`, `style.css` – the page
 - `download.js` – fills the download section from `update.json`; without it the page says the alpha is on its way
