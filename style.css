@@ -252,3 +252,20 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .catalog-help { margin-top: 32px; }
 .catalog-help .cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 .catalog-help .snippet code { white-space: pre; }
+
+/* The catalog page: three catalogs as tabs over one set of filters */
+.catalog-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-top: 8px; }
+.catalog-tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted);
+  font: 700 1rem var(--mono); padding: 10px 14px; cursor: pointer; margin-bottom: -1px; }
+.catalog-tabs button:hover { color: var(--text); }
+.catalog-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--cyan); }
+.catalog-tabs button:focus-visible { outline: 2px solid var(--cyan); outline-offset: -2px; }
+.catalog-tabs .n { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 4px; }
+.catalog-intro { margin: 16px 0 0; max-width: 75ch; font-size: 0.95rem; }
+.segmented[hidden], .icon-toggle[hidden], .swatches[hidden] { display: none; }
+/* A look's main colours on its card, its terminal's 16 in the details */
+.swatches { display: flex; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
+.swatches span { flex: 1; }
+.palette { display: inline-grid; grid-template-columns: repeat(8, 16px); gap: 3px; vertical-align: middle; }
+.palette span { width: 16px; height: 16px; border-radius: 3px; border: 1px solid var(--line); }
+.specs dd.lines { white-space: pre-line; font-family: var(--mono); font-size: 0.82rem; }

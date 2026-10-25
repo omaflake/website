@@ -5,8 +5,9 @@ custom domain in `CNAME`. No build step: plain HTML, CSS and one small script.
 
 - `index.html`, `style.css` – the page
 - `download.js` – fills the download section from `update.json`; without it the page says the alpha is on its way
-- `recipes/` – the recipe catalog: `recipes.js` loads `catalog.json` of omaflake/recipes (or of the public source in
-  `?source=owner/repo`) at view time and searches and filters it – a new recipe needs no commit here
+- `catalog/` – the catalog: `catalog.js` loads `catalog.json` of omaflake/catalog (or of the public source in
+  `?source=owner/repo`) at view time and shows its three catalogs – recipes, modules with key bindings, looks – with
+  one set of filters; a new entry needs no commit here. `recipes/` sends old links there.
 - `update.json` – the release feed (spec §11.6): written by omaflake's release workflow, also read by the app's
   update check. Format: `{"version": "0.1.0", "url": "…/omaflake-0.1.0-unsigned.zip", "sha256": "…", "notes": null, "page": "…"}`.
   `url` must be publicly downloadable, and `<url>.sha256` must exist next to it (the install snippet checks it).

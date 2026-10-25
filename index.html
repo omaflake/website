@@ -27,7 +27,7 @@
     <p class="status">Alpha · unsigned build · for testing</p>
     <nav class="actions">
       <a class="button primary" href="#download">Download the alpha</a>
-      <a class="button" href="recipes/">Recipes</a>
+      <a class="button" href="catalog/">Catalog</a>
       <a class="button" href="https://omaflake.dev">Documentation</a>
       <a class="button" href="https://github.com/omaflake/omaflake">View on GitHub</a>
     </nav>
@@ -39,7 +39,7 @@
       <div class="cards">
         <article>
           <h3>Recipes</h3>
-          <p>Declare what a VM contains as Nix modules – NixOS for Linux guests, nix-darwin for macOS guests. <a href="recipes/">Browse the recipes</a>.</p>
+          <p>Put a VM together from building blocks: a platform – NixOS or macOS –, modules (a desktop, a terminal, an editor, LaTeX …, written in Nix), a look and key bindings. Install a recipe and what it is made of comes along – or put your own together in the app. <a href="catalog/">Browse the catalog</a>.</p>
         </article>
         <article>
           <h3>Images</h3>
@@ -58,8 +58,8 @@
         <table>
           <thead><tr><th>Guest</th><th>Content</th><th>Runtime</th></tr></thead>
           <tbody>
-            <tr><td data-label="Guest"><strong>NixOS</strong> (aarch64, x86_64)</td><td data-label="Content">NixOS modules, built as UEFI qcow2 images</td><td data-label="Runtime">Mac: QEMU with Hypervisor.framework, own build with virglrenderer for 3D · Linux: QEMU with KVM</td></tr>
-            <tr><td data-label="Guest"><strong>macOS</strong> (Mac only)</td><td data-label="Content">nix-darwin modules on top of a base installed from Apple's IPSW</td><td data-label="Runtime"><code>omaf-runner</code>, one process per VM on Virtualization.framework</td></tr>
+            <tr><td data-label="Guest"><strong>NixOS</strong> (aarch64, x86_64)</td><td data-label="Content">NixOS modules from the catalog, built as UEFI qcow2 images</td><td data-label="Runtime">Mac: QEMU with Hypervisor.framework, own build with virglrenderer for 3D · Linux: QEMU with KVM</td></tr>
+            <tr><td data-label="Guest"><strong>macOS</strong> (Mac only)</td><td data-label="Content">nix-darwin modules from the catalog, on top of a base installed from Apple's IPSW</td><td data-label="Runtime"><code>omaf-runner</code>, one process per VM on Virtualization.framework</td></tr>
           </tbody>
         </table>
       </div>
@@ -136,7 +136,7 @@ omaf doctor</code></pre>
   </main>
 
   <footer>
-    <p>omaflake is free software under the <a href="https://github.com/omaflake/omaflake/blob/main/LICENSE">GNU AGPL-3.0-or-later</a>; its recipes are MIT. © 2026 falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G. – a <a href="https://falkoss.org">falkOSS</a> project.
+    <p>omaflake is free software under the <a href="https://github.com/omaflake/omaflake/blob/main/LICENSE">GNU AGPL-3.0-or-later</a>; its catalog is MIT. © 2026 falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G. – a <a href="https://falkoss.org">falkOSS</a> project.
       Contact: <a href="mailto:support@omaflake.app">support@omaflake.app</a> ·
       <a href="https://falkoss.org/impressum.html">Imprint</a> · <a href="https://falkoss.org/datenschutz.html">Privacy</a></p>
   </footer>
