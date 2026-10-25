@@ -271,6 +271,7 @@
     $('[data-intro]').textContent = c.intro;
     $('[data-panel]').setAttribute('aria-labelledby', `tab-${state.tab}`);
     form.querySelectorAll('[data-filter]').forEach(f => { f.hidden = !c.filters.includes(f.dataset.filter); });
+    document.querySelectorAll('[data-help]').forEach(h => { h.hidden = h.dataset.help !== state.tab; });
     labToggle.hidden = !c.lab;
     form.q.placeholder = { recipes: 'Search name, description, tag, module …', modules: 'Search name, description, capability …',
       looks: 'Search name, description, tag …' }[state.tab];

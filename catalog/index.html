@@ -112,29 +112,64 @@
       <p class="error" data-error hidden></p>
     </div>
 
+    <!-- How to install what the catalog shows: the part for the tab shown (catalog.js) -->
     <section class="catalog-help">
       <h2>Install</h2>
-      <div class="cards">
+      <div class="cards" data-help="recipes">
         <article>
           <h3>In the app</h3>
-          <p>Open the <em>Recipes</em> tab, pick a recipe and click <em>Install</em> – the modules, key bindings and look it
-            is made of come along. Then build its image and create a VM from it. Modules and looks have tabs of their own.</p>
+          <p>In the <em>Recipes</em> tab, pick a recipe and click <em>Install</em> – its modules, key bindings and look come
+            along. Then build its image and create a VM from it.</p>
         </article>
         <article>
           <h3>On the command line</h3>
-          <p>Each entry above shows its command under <em>Details and install</em>.</p>
           <pre class="snippet"><code>omaf recipes install omaflake/nixos/neovim-minimal
-omaf recipes show neovim-minimal
 omaf build neovim-minimal
 omaf new test --recipe neovim-minimal</code></pre>
         </article>
         <article>
           <h3>Your own</h3>
-          <p>Put a recipe together in the app (<em>New Recipe …</em>), write one (<a href="https://omaflake.dev/recipes/">Writing
-            recipes</a>), propose it by pull request, or run a catalog of your own – this page shows any public one:
-            <code>?source=owner/repo</code>.</p>
+          <p>Put one together in the app (<em>New Recipe …</em>) or write one (<a href="https://omaflake.dev/recipes/">Writing
+            recipes</a>).</p>
         </article>
       </div>
+      <div class="cards" data-help="modules" hidden>
+        <article>
+          <h3>In the app</h3>
+          <p>Installing a recipe brings its modules and key bindings. In the <em>Modules</em> tab you install, update and
+            remove them one by one.</p>
+        </article>
+        <article>
+          <h3>On the command line</h3>
+          <pre class="snippet"><code>omaf modules install omaflake/nixos/zathura
+omaf modules install omaflake/default
+omaf modules</code></pre>
+        </article>
+        <article>
+          <h3>Your own</h3>
+          <p>A module is Nix with a <code>module.toml</code>; key bindings are a <code>keymap.toml</code>
+            (<a href="https://github.com/omaflake/catalog/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>).</p>
+        </article>
+      </div>
+      <div class="cards" data-help="looks" hidden>
+        <article>
+          <h3>In the app</h3>
+          <p>In the <em>Looks</em> tab, click <em>Install</em> and make one the default – or choose it when you build an
+            image.</p>
+        </article>
+        <article>
+          <h3>On the command line</h3>
+          <pre class="snippet"><code>omaf looks install omaflake/catppuccin
+omaf looks default omaflake/catppuccin
+omaf build neovim-minimal --look omaflake/catppuccin</code></pre>
+        </article>
+        <article>
+          <h3>Your own</h3>
+          <p>A look is one <code>look.toml</code> – colours and a few choices
+            (<a href="https://github.com/omaflake/catalog/blob/main/CONTRIBUTING.md#contributing-a-look">CONTRIBUTING.md</a>).</p>
+        </article>
+      </div>
+      <p class="muted catalog-other">Any public catalog shows here: <code>?source=owner/repo</code>.</p>
     </section>
   </main>
 

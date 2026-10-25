@@ -262,7 +262,8 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .catalog-tabs button:focus-visible { outline: 2px solid var(--cyan); outline-offset: -2px; }
 .catalog-tabs .n { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 4px; }
 .catalog-intro { margin: 16px 0 0; max-width: 75ch; font-size: 0.95rem; }
-.segmented[hidden], .icon-toggle[hidden], .swatches[hidden] { display: none; }
+.segmented[hidden], .icon-toggle[hidden], .swatches[hidden], .cards[hidden] { display: none; }
+.catalog-other { margin: 16px 0 0; font-size: 0.9rem; }
 /* A look's main colours on its card, its terminal's 16 in the details */
 .swatches { display: flex; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
 .swatches span { flex: 1; }
