@@ -376,7 +376,7 @@
       if (linux.length) facts.push(`Linux ${linux.join(' · ')}`);
       if (x.vm.display) facts.push(DISPLAYS[x.vm.display] || String(x.vm.display));
       if (x.vm.ephemeral) facts.push('Ephemeral');
-      if (x.modules.length) facts.push(`${x.modules.length} modules`);
+      if (x.modules.length) facts.push(`${x.modules.length} module${x.modules.length === 1 ? '' : 's'}`);
       if (x.modules.length) {
         specs.push(['Modules', x.modules.map(m => () => jump('modules', m, bare(m), x.platform))]);
       }
