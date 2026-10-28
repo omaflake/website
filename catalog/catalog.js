@@ -157,8 +157,10 @@
   }
 
   function normModule(m) {
-    const actions = Object.entries(obj(m.actions)).map(([id, a]) => ({ id, title: str(obj(a).title), key: str(obj(a).key),
-      mode: str(obj(a).mode) }));
+    // module v2 (catalog v5): a key or mode may be one or several; after is the mode afterwards
+    const several = v => (typeof v === 'string' ? [v] : arr(v));
+    const actions = Object.entries(obj(m.actions)).map(([id, a]) => ({ id, title: str(obj(a).title),
+      key: several(obj(a).key).join(' / '), mode: several(obj(a).mode).join(', '), after: str(obj(a).after) }));
     const out = {
       kind: 'module',
       author: str(m.author), platform: str(m.platform), name: str(m.name), path: str(m.path), title: str(m.title) || str(m.name),
@@ -403,7 +405,7 @@
       if (x.provides.length) specs.push(['Provides', x.provides.join(', ')]);
       if (x.needs.length) specs.push(['Needs', x.needs.join(', ')]);
       if (x.enhances.length) specs.push(['Works with', x.enhances.map(e => () => jump('modules', e, e, x.platform))]);
-      if (x.actions.length) specs.push(['Keys', x.actions.map(a => `${a.key} – ${a.title}${a.mode ? ` (${a.mode} mode)` : ''}`).join('\n')]);
+      if (x.actions.length) specs.push(['Keys', x.actions.map(a => `${a.key} – ${a.title}${a.mode ? ` (${a.mode} mode${a.after ? `, then ${a.after}` : ''})` : ''}`).join('\n')]);
       if (users.length) specs.push(['Used by', users.map(r => () => jump('recipes', r.name, r.slug))]);
       cmd = `omaf modules install ${x.slug}`;
     } else if (x.kind === 'keymap') {
