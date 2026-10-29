@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // Fills the download section from update.json – the feed the release workflow writes and the app's update check
 // reads (omaflake spec §11.6). No feed yet: the "on its way" note stays.
 (async () => {

@@ -1,7 +1,7 @@
 # omaflake website
 
 Static site for [omaflake](https://omaflake.app), deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`, under the
-custom domain in `CNAME`. The workflow copies a fixed list of files and folders – a new one goes into its `cp` line. No build step: plain HTML, CSS and one small script.
+custom domain in the repository's Pages settings (no `CNAME` file with Pages through Actions). The workflow copies a fixed list of files and folders – a new one goes into its `cp` line. No build step: plain HTML, CSS and one small script.
 
 - `index.html`, `style.css` – the page
 - `download.js` – fills the download section from `update.json`; without it the page says the alpha is on its way
@@ -12,7 +12,9 @@ custom domain in `CNAME`. The workflow copies a fixed list of files and folders 
   update check. Format: `{"version": "0.1.0", "url": "…/omaflake-0.1.0-unsigned.zip", "sha256": "…", "notes": null, "page": "…"}`.
   `url` must be publicly downloadable, and `<url>.sha256` must exist next to it (the install snippet checks it).
 - `NOTICE` – third-party material the site embeds (a Lucide icon, ISC; the Apple logo from Simple Icons)
-- favicons, `site.webmanifest`, `assets/` – copied from `omaflake/brand/` (edit there, regenerate, copy here)
+- favicons, `site.webmanifest`, `assets/` – copies from the repository [omaflake/brand](https://github.com/omaflake/brand)
+  (CC BY-ND 4.0), written by its `copy.py`; never edited here
+- `.well-known/security.txt` – where to report security problems; renew `Expires` before 2027-10-29
 
 Publishing a release: attach the zip and its `.sha256` to a public GitHub release, then commit its `update.json` here.
 

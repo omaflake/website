@@ -1,6 +1,6 @@
 omaflake's website – third-party material it embeds
 
-Lucide icon "snowflake" (the NixOS guest kind on the recipes page, recipes/recipes.js), lucide-static 1.61.0
+Lucide icon "snowflake" (the NixOS guest kind on the recipes page, catalog/catalog.js), lucide-static 1.61.0
 https://lucide.dev – https://github.com/lucide-icons/lucide
 
 ISC License

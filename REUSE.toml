@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Licence and copyright of files that cannot carry a header (REUSE specification 3.3).
+version = 1
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G. and the omaflake contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+# Copies of the artwork from omaflake/brand – kept as they are, under its licence.
+[[annotations]]
+path = ["favicon.*", "apple-touch-icon.png", "icon-*.png", "site.webmanifest", "social.png", "assets/**"]
+precedence = "override"
+SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G."
+SPDX-License-Identifier = "CC-BY-ND-4.0"
+
+# The notice of the third-party material (Lucide, Simple Icons) – the snippets themselves are marked in catalog.js.
+[[annotations]]
+path = "NOTICE"
+precedence = "override"
+SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G. and the omaflake contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
