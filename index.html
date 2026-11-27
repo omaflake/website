@@ -107,9 +107,8 @@ ditto -x -k &lt;file&gt; /Applications</code></pre>
       <div class="cards stack">
         <article>
           <h3>With Nix</h3>
-          <p>Installs omaflake and QEMU, then points omaflake at its image flake (the Linux package does not bring it yet).</p>
+          <p>Installs omaflake – with its image flake – and QEMU, then checks what is missing.</p>
           <pre class="snippet"><code>nix profile install github:omaflake/omaflake#omaflake-gui nixpkgs#qemu
-omaf config --flake 'github:omaflake/omaflake?dir=nix'
 omaf doctor</code></pre>
         </article>
       </div>
@@ -129,7 +128,7 @@ omaf doctor</code></pre>
         <li>Things will break. Your VMs, images and settings live in <code>~/.omaflake</code> – the app can move that folder.</li>
         <li>No automatic updates yet: the Doctor tells you when a new version is out, you install it the same way.</li>
         <li>Signed and notarized builds follow once falkOSS, the non-profit behind omaflake, has its Apple developer account.</li>
-        <li>The <code>omaf</code> CLI comes with the app: on a Mac the <em>Doctor</em> offers to put it on your PATH; the Linux package installs it.</li>
+        <li>The <code>omaf</code> CLI comes with the app: on a Mac the <em>Doctor</em> offers to put it on your PATH; the Linux package installs it. The CLI alone: <code>cargo install omaflake</code>; tools of your own talk to omaflake through the crate <a href="https://crates.io/crates/omaflake-sdk">omaflake-sdk</a>.</li>
       </ul>
       <p>Found a bug, missing something? <a href="https://github.com/omaflake/omaflake/issues">Open an issue</a> or write to
         <a href="mailto:support@omaflake.app?subject=omaflake%20alpha%20feedback">support@omaflake.app</a> – thank you for testing.</p>
